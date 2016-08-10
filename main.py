@@ -12,15 +12,16 @@ def create_dataset(no_datapoints, variance, step=2, correlation=False):
     val=1
     ys=[]
     for i in range(no_datapoints):
-        val = 1
         y = val + random.randrange(-variance, variance)
         ys.append(y)
         if correlation and correlation == 'pos':
             val += step
         elif correlation and correlation == 'neg':
             val -= step
-    xs = [i for i in range(len(ys))]
+    print(ys)
 
+    xs = [i for i in range(len(ys))]
+    print(xs)
     return np.array(xs, dtype=np.float64), np.array(ys, dtype=np.float64)
 
 def best_fit_slope_and_intercept(xs, ys):
@@ -38,7 +39,7 @@ def r_squared(ys_orig, regression_line):
     return 1 - (squared_error_regression / squared_error_mean)
 
 
-xs, ys = create_dataset(40, 100, 2, correlation='pos')
+xs, ys = create_dataset(40, 10, 2, correlation='pos')
 
 m, b = best_fit_slope_and_intercept(xs,ys)
 
